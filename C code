@@ -1,0 +1,23 @@
+// Automatic Street Light Using LDR
+
+int ldrPin = A0;   // LDR connected to analog pin A0
+int ledPin = 9;    // LED or relay connected to digital pin 9
+int threshold = 500; // Adjust based on your environment (0-1023)
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int ldrValue = analogRead(ldrPin);
+  Serial.println(ldrValue);
+
+  if (ldrValue < threshold) {
+    digitalWrite(ledPin, HIGH);  // Turn ON light when dark
+  } else {
+    digitalWrite(ledPin, LOW);   // Turn OFF light when bright
+  }
+
+  delay(200);
+}
